@@ -24,7 +24,7 @@
 <a name="introduction"></a>
 ## 简介
 
-Blade 是 Laravel 提供的一个简单而有强大的模板引擎。和其他流行的 PHP 模板引擎不同，Blade 并不限制你在视图中使用原生 PHP 代码。所有 Blade 视图文件都将被编译成原生的 PHP 代码并缓存起来，除非它被修改，否则不会重新编译，这就意味着 Blade 基本上不会给你的应用增加任何负担。Blade 视图文件使用 `.blade.php` 作为文件扩展名，被存放在 `resources/views` 目录。
+Blade 是 Laravel 提供的一个简单而又强大的模板引擎。和其他流行的 PHP 模板引擎不同，Blade 并不限制你在视图中使用原生 PHP 代码。所有 Blade 视图文件都将被编译成原生的 PHP 代码并缓存起来，除非它被修改，否则不会重新编译，这就意味着 Blade 基本上不会给你的应用增加任何负担。Blade 视图文件使用 `.blade.php` 作为文件扩展名，被存放在 `resources/views` 目录。
 
 <a name="template-inheritance"></a>
 ## 模板继承
@@ -60,23 +60,25 @@ Blade 的两个主要优点是 _模板继承_ 和 _区块_ 。为方便开始，
 
 当定义子视图时，你可以使用 Blade 提供的 `@extends` 命令来为子视图指定应该 「继承」 的布局。 继承 Blade 布局的视图可使用 `@section` 命令将内容注入于布局的 `@section` 中。而「主」布局中使用 `@yield` 的地方会显示这些子视图中的  `@section` 间的内容：
 
-    <!-- 文件保存于 resources/views/child.blade.php -->
+````
+<!-- 文件保存于 resources/views/layouts/child.blade.php -->
 
-    @extends('layouts.app')
+@extends('layouts.app')
 
-    @section('title', 'Page Title')
+@section('title', 'Page Title')
 
-    @section('sidebar')
-        @parent
+@section('sidebar')
+    @parent
 
-        <p>这将被添加到主侧边栏。</p>
-    @endsection
+    <p>这将追加到主布局的侧边栏。</p>
+@endsection
 
-    @section('content')
-        <p>This is my body content.</p>
-    @endsection
+@section('content')
+    <p>这是主体内容。</p>
+@endsection
+````
 
-在上面的例子里，`@section` 中的 `sidebar` 使用 `@parent` 命令在「主」布局的 `@section('sidebar')` 中增加内容（不是覆盖）。渲染视图时，`@parent` 指令会被替换为「主」布局中 `@section('sidebar')` 间的内容。
+在上面的例子里，`@section` 中的 `sidebar` 使用 `@@parent` 命令在「主」布局的 `@section('sidebar')` 中增加内容（不是覆盖）。渲染视图时，`@@parent` 指令会被替换为「主」布局中 `@section('sidebar')` 间的内容。
 
 > {tip} 与上一个示例相反，此侧边栏部分以 `@endsection` 而不是 `@show` 结尾。 `@endsection` 指令只定义一个区块，而 `@show` 则是定义并立即生成该区块。
 
@@ -517,8 +519,8 @@ Blade 甚至允许你使用 `directive` 方法来定义自定义指令。当 Bla
 
 | 用户名 | 头像 | 职能 | 签名 |
 |---|---|---|---|
-| [Wayne John](https://github.com/boxshadow) | <img class="avatar-66 rm-style" src="https://avatars1.githubusercontent.com/u/8577474?s=100"> | 翻译   | 基于 Laravel 的社交开源系统 [ThinkSNS+](https://github.com/slimkit/thinksns-plus) 欢迎 Star。 |
-| [@JokerLinly](https://laravel-china.org/users/5350)  | <img class="avatar-66 rm-style" src="https://dn-phphub.qbox.me/uploads/avatars/5350_1481857380.jpg">  | Review | Stay Hungry. Stay Foolish. |
+| [Wayne John](https://github.com/boxshadow) | <img class="avatar-66 rm-style" src="https://avatars1.githubusercontent.com/u/8577474?s=100"> | 翻译 | 基于 Laravel 的社交开源系统 [ThinkSNS+](https://github.com/slimkit/thinksns-plus) 欢迎 Star。|
+| [@JokerLinly](https://laravel-china.org/users/5350) | <img class="avatar-66 rm-style" src="https://dn-phphub.qbox.me/uploads/avatars/5350_1481857380.jpg"> | Review | Stay Hungry. Stay Foolish. |
 
 ---
 

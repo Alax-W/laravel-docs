@@ -73,7 +73,7 @@
 [has](#method-has)
 [implode](#method-implode)
 [intersect](#method-intersect)
-[intersectKey](#method-intersectkey)
+[intersectByKeys](#method-intersectByKeys)
 [isEmpty](#method-isempty)
 [isNotEmpty](#method-isnotempty)
 [keyBy](#method-keyby)
@@ -199,7 +199,7 @@
 <a name="method-collapse"></a>
 #### `collapse()` {#collection-method}
 
-`collapse` 方法将多个数组合并成一个：
+`collapse` 方法将多个数组的集合合并成一个数组的集合：
 
     $collection = collect([[1, 2, 3], [4, 5, 6], [7, 8, 9]]);
 
@@ -636,16 +636,16 @@
 
     // [0 => 'Desk', 2 => 'Chair']
 
-<a name="method-intersectkey"></a>
-#### `intersectKey()` {#collection-method}
+<a name="method-intersectByKeys"></a>
+#### `intersectByKeys()` {#collection-method}
 
-`intersectKey` 方法删除原集合中不存在于给定「数组」或集合中的任何键。
+`intersectByKeys` 方法删除原集合中不存在于给定「数组」或集合中的任何键。
 
     $collection = collect([
         'serial' => 'UX301', 'type' => 'screen', 'year' => 2009
     ]);
 
-    $intersect = $collection->intersectKey([
+    $intersect = $collection->intersectByKeys([
         'reference' => 'UX404', 'type' => 'tab', 'year' => 2011
     ]);
 
@@ -894,7 +894,7 @@
 
     // ['product_id' => 1, 'name' => 'Desk']
 
-与 `only` 相反的方法，请查看 [except](#method-only)。
+与 `only` 相反的方法，请查看 [except](#method-except)。
 
 <a name="method-partition"></a>
 #### `partition()` {#collection-method}
@@ -1443,7 +1443,7 @@
 <a name="method-union"></a>
 #### `union()` {#collection-method}
 
-`unique` 方法将给定的数组添加到集合中。如果给定的数组中含有与原集合一样的键，则原集合的值不会被改变：
+`union` 方法将给定的数组添加到集合中。如果给定的数组中含有与原集合一样的键，则原集合的值不会被改变：
 
     $collection = collect([1 => ['a'], 2 => ['b']]);
 
